@@ -7,4 +7,17 @@
       if(array[i]%2) odd.push(i);
     }
 
-}
+    // complicated looking insertion sort
+    for(let i = 0; i < odd.length; i++){
+        let currentIndex = i;
+        for(let j = i+1; j < odd.length; j++){
+          if(array[odd[j]]<array[odd[currentIndex]]){ 
+            currentIndex = j;
+          }
+        }
+        let temp = array[odd[i]];
+        array[odd[i]] = array[odd[currentIndex]];
+        array[odd[currentIndex]] = temp;
+      }
+      return array;
+    }
