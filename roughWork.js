@@ -144,17 +144,81 @@ function nbYear(p0, percent, aug, p) {
         return output;
       }
 
-      // https://www.codewars.com/kata/55a2d7ebe362935a210000b2/train/javascript
+// https://www.codewars.com/kata/554e4a2f232cdd87d9000038/train/javascript
 
-      class SmallestIntegerFinder {
-        findSmallestInt(args) {
-          let min = args[0];
-          for(let i = 0; i < args.length; i++){
-            if(args[i]<min) min = args[i];
-          }
-          return min;
-        }
-        
+
+      function DNAStrand(dna){
+        const map = new Map([['A','T'],['T','A'],['G','C'],['C','G']]);
+       return dna.split('').map(e=>map.get(e)).join('')
       }
 
+// https://www.codewars.com/kata/56269eb78ad2e4ced1000013/train/javascript
 
+function findNextSquare(sq) {
+  // Return the next square if sq is a perfect square, -1 otherwise
+ if(sq !== Math.floor(Math.sqrt(sq))**2) return -1
+  return (Math.sqrt(sq)+1)**2;
+}
+
+// https://www.codewars.com/kata/57cc975ed542d3148f00015b/train/javascript
+
+function check(a, x) {
+  return a.some(e => e===x);
+  }
+
+  // https://www.codewars.com/kata/57eae65a4321032ce000002d/solutions/javascript
+
+  function fakeBin(x){
+    return x.split('').map(e=>e>=5?'1':'0').join('');
+  }
+
+  // https://www.codewars.com/kata/5265326f5fda8eb1160004c8/javascript
+
+  function numberToString(num) {
+    return num.toString();
+  }
+
+  // https://www.codewars.com/kata/550498447451fbbd7600041c/train/javascript
+
+  function comp(array1, array2){
+    if(!array1||!array2) return false;
+    let sq = array1.map(e=>e**2);
+    let map = new Map();
+    sq.forEach(e => {
+      if(map.has(e)){
+        map.set(e,map.get(e)+1);
+      }
+      else {
+        map.set(e,1);
+      }
+    })
+    array2.forEach(e => {
+      if(map.has(e)){
+        if(map.get(e)<=0) return false;
+        map.set(e,map.get(e)-1);
+      }
+      else return false;
+    })
+    for( value of map.values()){
+      if(value!=0) return false;
+    }
+    return true;
+  }
+
+// https://www.codewars.com/kata/550f22f4d758534c1100025a/train/javascript
+
+function dirReduc(arr){
+  let map = new Map([['NORTH','SOUTH'],['SOUTH','NORTH'],['EAST','WEST'],['WEST','EAST']]);
+  const stack = [];
+  let i = 0;
+while(i<arr.length){
+    while(stack.length&&map.get(arr[i])==stack[stack.length-1]){
+      stack.pop();
+      i++;
+    }
+  if(i ==arr.length) break;
+  stack.push(arr[i]);
+  i++;
+  }
+return (stack);
+}
